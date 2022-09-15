@@ -16,7 +16,6 @@ public class QuestionServiceImpl implements QuestionService{
 
     private final QuestionDao dao;
 
-    @Value("${passingPercentage}")
     private int passingPercentage;
 
     @Override
@@ -38,7 +37,8 @@ public class QuestionServiceImpl implements QuestionService{
         System.out.println(result/size*100 > passingPercentage ? "Passed" : "Not passed");
     }
 
-    public QuestionServiceImpl(QuestionDao dao) {
+    public QuestionServiceImpl(@Value("${passingPercentage}") int passingPercentage,QuestionDao dao) {
         this.dao = dao;
+        this.passingPercentage = passingPercentage;
     }
 }
